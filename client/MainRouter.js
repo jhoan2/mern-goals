@@ -13,12 +13,12 @@ const MainRouter = () => {
     return (<div>
       <Menu/>
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/users" component={Users}/>
-        <Route path="/signup" component={Signup}/>
+        {/* <Route path="/users" component={Users}/> */}
         <Route path="/signin" component={Signin}/>
-        <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
+        <Route path="/signup" component={Signup}/>
         <Route path="/user/:userId" component={Profile}/>
+        <PrivateRoute path="/" component={Home}/>
+        <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
       </Switch>
     </div>)
 }
