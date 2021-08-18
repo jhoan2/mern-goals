@@ -1,0 +1,39 @@
+import mongoose from 'mongoose'
+
+const ToDoSchema = new mongoose.Schema({
+    text: {
+        type: String,
+        required: 'Text is required',
+        maxLength: 30,
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    }
+})
+
+const ToDo = mongoose.model('ToDo', ToDoSchema)
+
+const GoalSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    maxLength: 15,
+    required: 'Text is required',
+  },
+  postedBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  toDo: [ToDoSchema]
+})
+
+export default mongoose.model('Goal', GoalSchema)
