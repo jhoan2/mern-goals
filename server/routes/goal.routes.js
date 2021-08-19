@@ -9,8 +9,8 @@ router.route('/api/goal')
     .post(goalCtrl.create)
 
 router.route('/api/goal/:goalId')
-    .get(goalCtrl.findGoal)
     .delete(goalCtrl.remove)
+
 
 router.param('userId', userCtrl.userByID)
 router.param('goalId', goalCtrl.goalByID)

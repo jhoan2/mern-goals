@@ -4,7 +4,6 @@ const ToDoSchema = new mongoose.Schema({
     text: {
         type: String,
         required: 'Text is required',
-        maxLength: 30,
     },
     created: {
         type: Date,
@@ -21,8 +20,8 @@ const ToDo = mongoose.model('ToDo', ToDoSchema)
 const GoalSchema = new mongoose.Schema({
   text: {
     type: String,
-    maxLength: 15,
     required: 'Text is required',
+    maxLength: [15, 'Max of 15 characters.']
   },
   postedBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
   created: {

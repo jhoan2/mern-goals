@@ -54,27 +54,11 @@ const remove = async (req, res) => {
     }
 }
 
-const findGoal = async (req, res, next, id) => {
-    try {
-        let goal = await Goal.findById(id)
-        if (!goal) {
-            return res.status('400').json({
-                error: 'No Goal Found'
-            })
-        }
-        res.json(goal)
-    } catch (err) {
-        return res.status(400).json({
-            error: 'Could not retrieve goal'
-        })
-    }
-}
 
 
 export default {
     create,
     goalByID,
     getGoals,
-    findGoal,
     remove,
 }

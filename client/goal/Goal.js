@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import GoalButtons from './GoalButtons'
-import ToDos from './ToDos'
-
+import React from 'react'
+import GoalTabs from './GoalTabs'
 export default function Goal() {
     return (
         <div>
-            <GoalButtons />
-            <ToDos />
+            <GoalTabs />
         </div>
     )
 }
