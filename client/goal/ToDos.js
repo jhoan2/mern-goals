@@ -10,6 +10,7 @@ import {
     List, 
     ListItemSecondaryAction, 
     ListItemText,
+    Checkbox
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,6 +24,7 @@ export default function Goal(props) {
                 {toDos.map((data) => (
                   <Grid item key={data._id}>
                     <ListItem>
+                    <Checkbox />
                       <ListItemText primary={data.text} />
                       <ListItemSecondaryAction>
                         <IconButton edge="end" aria-label="delete">

@@ -10,7 +10,22 @@ const listGoals = async (signal) => {
     }
   }
 
+const create = async (goal) => {
+    try {
+        let response = await fetch('/api/goal/', {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+            },
+            body: goal
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export {
     listGoals,
+    create,
 }

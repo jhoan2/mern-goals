@@ -5,13 +5,11 @@ import {
   Tabs,
   Tab,
 } from '@material-ui/core'
-
 import TabPanel from './TabPanel';
 
 export default function GoalTabs() {
 
     const [goals, setGoals] = useState([])
-    const [toDo, setToDo] = useState([])
     const [value, setValue] = useState(0);
 
     useEffect(() => {
@@ -23,7 +21,6 @@ export default function GoalTabs() {
             console.log(data.error)
           } else {
             setGoals(data)
-            setToDo(data[0]['toDo'])
           }
         })
     
@@ -51,6 +48,7 @@ export default function GoalTabs() {
               {goals.map((data) => {
                 return <Tab label={data.text} key={data._id} />
               })}
+
             </Tabs>
         </AppBar>
 
