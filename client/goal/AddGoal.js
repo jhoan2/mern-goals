@@ -20,10 +20,9 @@ export default function AddGoal(props) {
             todo: [{
                 text: ' ',
             }]
-        }
+        },
     })
     
-    console.log(values.goal.text)
     const handleClickOpen = () => {
         setOpen(true)
     }
@@ -34,17 +33,12 @@ export default function AddGoal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        let goalData = new FormData()
-        // goalData.append('goal', values.goal.text)
-        // goalData.append('todo', values.todo)
-        // create(goalData).then((data) => {
-        //     if (data.error) {
-        //         setValues({...values, goal:'', todo: ''})
-        //     } else {
-        //         setValues({...values, goal: '', todo: ''})
-        //     }
-        // })
-        alert('Submit Successful')
+        let { goal } = values
+        create(goal).then((data) => {
+            if (data.error) {
+                setValues({...values, goal: {text: ' '}})
+            }
+        })
     }
     return (
         <div>
@@ -57,21 +51,15 @@ export default function AddGoal(props) {
                     <DialogTitle id="form-dialog-title">Create a New Goal</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            To create a new goal, please enter the Goal with three steps as todos. 
+                            To create a new goal, please enter the Goal.
                         </DialogContentText>
                             <TextField 
                                 label="Goal"
                                 required
                                 error={values.goal === ''}
-                                //onChange={event=> setValues({goal: event.target.value})}
+                                onChange={event=> setValues({...values, goal: {text: event.target.value}})}
                                 helperText={values.goal === '' ? 'Must enter a Goal' : ' '}
-                            />
-                            <TextField 
-                                label="First To Do"
-                                required
-                                error={values.todo === ''}
-                                // onChange={event => setValues({todo: event.target.value})}
-                                helperText={values.todo === '' ? 'Must enter one to do' : ' '}
+                                fullWidth
                             />
                     </DialogContent>
                     <DialogActions>

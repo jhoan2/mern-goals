@@ -15,9 +15,9 @@ const create = async (goal) => {
         let response = await fetch('/api/goal/', {
             method: 'POST',
             headers: {
-                'Accept' : 'application/json',
+                "Content-Type": "application/json"
             },
-            body: goal
+            body: JSON.stringify(goal)
         })
         return await response.json()
     } catch (err) {
