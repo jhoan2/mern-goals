@@ -17,7 +17,7 @@ const create = async (req, res) => {
 
 const goalByID = async (req, res, next, id) => {
     try {
-        let goal = await Goal.findById(id).poplate('toDo', '_id').exec()
+        let goal = await Goal.findById(id).populate('toDo', '_id').exec()
         if (!goal) {
             return res.status('400').json({
                 error: 'No Goal Found'
@@ -42,6 +42,7 @@ const getGoals = async (req, res) => {
         })
     }
 }
+
 const remove = async (req, res) => {
     try {
         let goal = req.goal 

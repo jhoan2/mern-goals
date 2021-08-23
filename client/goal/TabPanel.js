@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ToDos from './ToDos'
 import AddGoal from './AddGoal'
+import DeleteGoal from './DeleteGoal';
 
 export default function TabPanel(props) {
     const { value, index, ...other } = props;
@@ -20,7 +21,12 @@ export default function TabPanel(props) {
             </div>
             <div>
                 {value === index && (
-                    <AddGoal goal={props} />
+                    <AddGoal />
+                )}
+            </div>
+            <div>
+                {value === index && (
+                    <DeleteGoal goal={props} />
                 )}
             </div>
         </div>

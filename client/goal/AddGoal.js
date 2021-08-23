@@ -12,7 +12,7 @@ import {
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { create } from './api-goal';
 
-export default function AddGoal(props) {
+export default function AddGoal() {
     const [open, setOpen] = useState(false)
     const [values, setValues] = useState({
         goal: {
@@ -22,7 +22,7 @@ export default function AddGoal(props) {
             }]
         },
     })
-    
+
     const handleClickOpen = () => {
         setOpen(true)
     }
@@ -39,7 +39,10 @@ export default function AddGoal(props) {
                 setValues({...values, goal: {text: ' '}})
             }
         })
+        handleClose()
+        location.reload()
     }
+
     return (
         <div>
             <IconButton onClick={handleClickOpen}>

@@ -27,7 +27,7 @@ export default function GoalTabs() {
         return function cleanup(){
           abortController.abort()
         }
-      }, [goals])
+      }, [])
       
     const handleChange = (event, newValue) => {
       setValue(newValue);

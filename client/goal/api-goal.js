@@ -25,7 +25,22 @@ const create = async (goal) => {
     }
 }
 
+const remove = async (params) => {
+    try {
+      let response = await fetch('/api/goal/' + params.goalId, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+        }
+      })
+      return await response.json()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 export {
     listGoals,
     create,
+    remove,
 }
