@@ -8,6 +8,7 @@ import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import GoalTabs from './goal/GoalTabs'
+import NotFound from './core/NotFound'
 
 const MainRouter = () => {
     return (<div>
@@ -19,6 +20,7 @@ const MainRouter = () => {
         <Route path="/user/:userId" component={Profile}/>
         <PrivateRoute path="/" component={GoalTabs}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
+        <Route path='*' component={NotFound} />
       </Switch>
     </div>)
 }

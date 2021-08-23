@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import auth from './../auth/auth-helper'
-import { listGoals } from './api-goal'
 import { 
     Box, 
     Typography,
