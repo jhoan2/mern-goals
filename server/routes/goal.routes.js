@@ -11,6 +11,9 @@ router.route('/api/goal')
 router.route('/api/goal/:goalId')
     .delete(goalCtrl.remove)
 
+router.route('/api/goal/:goalId/todo')
+    .put(goalCtrl.addToDo)
+
 
 router.param('userId', userCtrl.userByID)
 router.param('goalId', goalCtrl.goalByID)

@@ -10,17 +10,13 @@ import {
     Button,
 } from '@material-ui/core'
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import { create } from './api-goal';
+import { addToDo } from './api-goal';
 
-export default function AddGoal() {
+export default function AddGoal(props) {
+
     const [open, setOpen] = useState(false)
     const [values, setValues] = useState({
-        goal: {
-            text: ' ',
-            todo: [{
-                text: ' ',
-            }]
-        },
+        text: ''
     })
 
     const handleClickOpen = () => {
@@ -31,12 +27,15 @@ export default function AddGoal() {
         setOpen(false)
     }  
 
+    const toDo = {
+        text: values.text || undefined
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        let { goal } = values
-        create(goal).then((data) => {
-            if (data.error) {
-                setValues({...values, goal: {text: ' '}})
+        addToDo({goalId: props.goal.props._id}, toDo).then((data) => {
+            if (data && data.error) {
+                setValues({...values, text: ' '})
             }
         })
         handleClose()
@@ -50,17 +49,17 @@ export default function AddGoal() {
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <form onSubmit={handleSubmit}>
-                    <DialogTitle id="form-dialog-title">Create a New Goal</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Create a New To Do</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            To create a new goal, please enter the Goal.
+                            To create a new To Do, please enter the To Do.
                         </DialogContentText>
                             <TextField 
-                                label="Goal"
+                                label="To Do"
                                 required
                                 error={values.goal === ''}
-                                onChange={event=> setValues({...values, goal: {text: event.target.value}})}
-                                helperText={values.goal === '' ? 'Must enter a Goal' : ' '}
+                                onChange={event=> setValues({...values, text: event.target.value})}
+                                helperText={values.goal === '' ? 'Must enter a To Do' : ' '}
                                 fullWidth
                             />
                     </DialogContent>

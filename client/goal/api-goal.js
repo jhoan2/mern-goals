@@ -39,8 +39,23 @@ const remove = async (params) => {
     }
   }
 
+  const addToDo = async (params,toDo) => {
+    try {
+        let response = await fetch('/api/goal/'+params.goalId+'/todo', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(toDo)
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
 export {
     listGoals,
     create,
     remove,
+    addToDo,
 }

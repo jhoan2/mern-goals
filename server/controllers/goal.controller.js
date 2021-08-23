@@ -55,11 +55,22 @@ const remove = async (req, res) => {
     }
 }
 
-
+//need to get goal id in here
+const addToDo = async (req, res) => {
+    try {
+        let result = await Goal.findByIdAndUpdate(req.goal._id, {$push: {toDo: req.body}, updated: Date.now()}, {new: true})
+        res.json(result)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
 
 export default {
     create,
     goalByID,
     getGoals,
     remove,
+    addToDo,
 }

@@ -7,7 +7,7 @@ import EditProfile from './user/EditProfile'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
-import Goal from './goal/Goal'
+import GoalTabs from './goal/GoalTabs'
 
 const MainRouter = () => {
     return (<div>
@@ -17,7 +17,7 @@ const MainRouter = () => {
         <Route path="/signin" component={Signin}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/user/:userId" component={Profile}/>
-        <PrivateRoute path="/" component={Goal}/>
+        <PrivateRoute path="/" component={GoalTabs}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
       </Switch>
     </div>)
