@@ -66,23 +66,6 @@ const addToDo = async (req, res) => {
     }
 }
 
-//result of the findById
-// {
-//     completed: false,
-//     _id: 6125a8186910626a04e0f7a6,
-//     text: 'Goal 1',
-//     created: 2021-08-25T02:16:56.552Z,
-//     toDo: [
-//       {
-//         completed: false,
-//         created: 2021-08-25T02:17:07.749Z,
-//         _id: 6125a8236910626a04e0f7a7,
-//         text: 'To Do'
-//       }
-//     ],
-//     __v: 0
-//   }
-
 const dropToDo = async (req, res) => {
     try {
         let goal = await Goal.updateOne({_id: req.params.goalId}, {"$pull": { "toDo": {"_id": req.body.toDoId}}})
