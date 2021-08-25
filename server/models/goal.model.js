@@ -1,21 +1,5 @@
 import mongoose from 'mongoose'
 
-const ToDoSchema = new mongoose.Schema({
-    text: {
-        type: String,
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    completed: {
-      type: Boolean,
-      default: false
-    }
-})
-
-const ToDo = mongoose.model('ToDo', ToDoSchema)
-
 const GoalSchema = new mongoose.Schema({
   text: {
     type: String,
@@ -31,7 +15,20 @@ const GoalSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  toDo: [ToDoSchema]
+  toDo: [{
+      text: {
+        type: String,
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    },
+  }],
 })
 
 export default mongoose.model('Goal', GoalSchema)
+ 

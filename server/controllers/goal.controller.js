@@ -17,7 +17,7 @@ const create = async (req, res) => {
 
 const goalByID = async (req, res, next, id) => {
     try {
-        let goal = await Goal.findById(id).populate('toDo', '_id').exec()
+        let goal = await Goal.findById(id)
         if (!goal) {
             return res.status('400').json({
                 error: 'No Goal Found'
@@ -55,11 +55,38 @@ const remove = async (req, res) => {
     }
 }
 
-//need to get goal id in here
 const addToDo = async (req, res) => {
     try {
         let result = await Goal.findByIdAndUpdate(req.goal._id, {$push: {toDo: req.body}, updated: Date.now()}, {new: true})
         res.json(result)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
+//result of the findById
+// {
+//     completed: false,
+//     _id: 6125a8186910626a04e0f7a6,
+//     text: 'Goal 1',
+//     created: 2021-08-25T02:16:56.552Z,
+//     toDo: [
+//       {
+//         completed: false,
+//         created: 2021-08-25T02:17:07.749Z,
+//         _id: 6125a8236910626a04e0f7a7,
+//         text: 'To Do'
+//       }
+//     ],
+//     __v: 0
+//   }
+
+const dropToDo = async (req, res) => {
+    try {
+        let goal = await Goal.updateOne({_id: req.params.goalId}, {"$pull": { "toDo": {"_id": req.body.toDoId}}})
+        res.json(goal)
     } catch (err) {
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
@@ -73,4 +100,5 @@ export default {
     getGoals,
     remove,
     addToDo,
+    dropToDo,
 }

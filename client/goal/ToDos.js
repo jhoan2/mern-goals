@@ -13,10 +13,18 @@ import {
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import {dropToDo} from './api-goal'
 
 export default function Goal(props) {
     const { goal } = props
     const toDos = goal.props.toDo
+    const deleteToDo = (toDoId) => {
+        dropToDo({goalId: props.goal.props._id}, toDoId).then((data) => {
+            if (data && data.error) {
+                console.log('Could not delete To Do')
+            }
+        })
+    }
     return (
         <Grid container>
               <List>
@@ -26,7 +34,7 @@ export default function Goal(props) {
                     <Checkbox />
                       <ListItemText primary={data.text} />
                       <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="delete" onClick={() => deleteToDo({toDoId: data._id})}>
                           <DeleteIcon />
                         </IconButton>
                       </ListItemSecondaryAction>

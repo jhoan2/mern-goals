@@ -53,9 +53,25 @@ const remove = async (params) => {
         console.log(err)
     }
 }
+
+const dropToDo = async (params, id) => {
+    try {
+        let response = await fetch('/api/goal/'+params.goalId+'/undo', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
 export {
     listGoals,
     create,
     remove,
     addToDo,
+    dropToDo,
 }

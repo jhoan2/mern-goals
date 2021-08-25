@@ -13,7 +13,6 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { addToDo } from './api-goal';
 
 export default function AddGoal(props) {
-
     const [open, setOpen] = useState(false)
     const [values, setValues] = useState({
         text: ''
