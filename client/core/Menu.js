@@ -39,8 +39,8 @@ const Menu = withRouter(({history}) => (
               <HomeIcon/>
             </IconButton>
           </Link>
-          <Link to="/">
-            <IconButton aria-label="Feed" style={isActive(history, "/")}>
+          <Link to="/postfeed">
+            <IconButton aria-label="Feed" style={isActive(history, "/postfeed")}>
               <DynamicFeedIcon />
             </IconButton>
           </Link>

@@ -9,6 +9,7 @@ import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import GoalTabs from './goal/GoalTabs'
 import NotFound from './core/NotFound'
+import PostFeed from './post/PostFeed'
 
 const MainRouter = () => {
     return (<div>
@@ -18,6 +19,7 @@ const MainRouter = () => {
         <Route path="/signin" component={Signin}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/user/:userId" component={Profile}/>
+        <Route path='/postfeed' component={PostFeed} />
         <PrivateRoute path="/" component={GoalTabs}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path='*' component={NotFound} />
