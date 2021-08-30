@@ -3,11 +3,10 @@ import errorHandler from './../helpers/dbErrorHandler'
 
 const create = async (req, res) => {
     const goal = new Goal(req.body)
+    goal.postedBy = req.profile
     try {
-        await goal.save()
-        return res.status(200).json({
-            message: 'Successfully created a Goal!'
-        })
+        let result = await goal.save()
+        return res.status(200).json(result)
     } catch (err) {
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
@@ -34,7 +33,7 @@ const goalByID = async (req, res, next, id) => {
 
 const getGoals = async (req, res) => {
     try {
-        let goals = await Goal.find()
+        let goals = await Goal.find({postedBy: req.profile._id}).populate('postedBy', 'name _id')
         res.json(goals)
     } catch (err) {
         return res.status(400).json({

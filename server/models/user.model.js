@@ -22,7 +22,8 @@ const UserSchema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  goals: [{type: mongoose.Schema.ObjectId, ref: 'Goal'}]
 })
 
 UserSchema

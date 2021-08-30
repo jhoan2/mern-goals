@@ -1,4 +1,4 @@
-const listGoals = async (signal) => {
+const listGoals = async (params, credentials, signal) => {
     try {
       let response = await fetch('/api/goal/', {
         method: 'GET',

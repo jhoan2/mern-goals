@@ -1,10 +1,11 @@
 import express from 'express'
 import userCtrl from '../controllers/user.controller'
 import goalCtrl from '../controllers/goal.controller'
+import authCtrl from '../controllers/auth.controller'
 
 const router = express.Router()
 
-router.route('/api/goal')
+router.route('/api/goal/:userId')
     .get(goalCtrl.getGoals)
     .post(goalCtrl.create)
 

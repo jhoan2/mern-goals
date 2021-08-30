@@ -6,17 +6,18 @@ import {
   Tab,
 } from '@material-ui/core'
 import TabPanel from './TabPanel';
+import auth from '../auth/auth-helper'
 
 export default function GoalTabs() {
 
     const [goals, setGoals] = useState([])
     const [value, setValue] = useState(0);
-
     useEffect(() => {
-        const abortController = new AbortController()
-        const signal = abortController.signal
-    
-        listGoals(signal).then((data) => {
+      const abortController = new AbortController()
+      const signal = abortController.signal
+      const jwt = auth.isAuthenticated()
+      console.log(jwt.user)
+        listGoals({t: jwt.token}, {userId: jwt.user._id}, signal).then((data) => {
           if (data && data.error) {
             console.log(data.error)
           } else {
