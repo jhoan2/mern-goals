@@ -16,8 +16,7 @@ export default function GoalTabs() {
       const abortController = new AbortController()
       const signal = abortController.signal
       const jwt = auth.isAuthenticated()
-      console.log(jwt.user)
-        listGoals({t: jwt.token}, {userId: jwt.user._id}, signal).then((data) => {
+        listGoals({userId: jwt.user._id}, {t: jwt.token}, signal).then((data) => {
           if (data && data.error) {
             console.log(data.error)
           } else {

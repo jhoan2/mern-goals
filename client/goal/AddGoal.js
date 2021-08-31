@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { create } from './api-goal';
+import auth from '../auth/auth-helper'
 
 export default function AddGoal() {
     const [open, setOpen] = useState(false)
@@ -34,13 +35,14 @@ export default function AddGoal() {
     const handleSubmit = (e) => {
         e.preventDefault()
         let { goal } = values
-        create(goal).then((data) => {
+        const jwt = auth.isAuthenticated()
+        create({userId: jwt.user._id}, {t: jwt.token}, goal).then((data) => {
             if (data.error) {
                 setValues({...values, goal: {text: ' '}})
             }
         })
         handleClose()
-        location.reload()
+        // location.reload()
     }
     return (
         <div>

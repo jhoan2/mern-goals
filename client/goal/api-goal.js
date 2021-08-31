@@ -1,8 +1,13 @@
 const listGoals = async (params, credentials, signal) => {
     try {
-      let response = await fetch('/api/goal/', {
+      let response = await fetch('/api/goal/'+params.userId, {
         method: 'GET',
-        signal: signal
+        signal: signal,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer' + credentials.t
+        }
       })
       return await response.json()
     } catch(err) {
@@ -10,16 +15,18 @@ const listGoals = async (params, credentials, signal) => {
     }
   }
 
-const create = async (goal) => {
+const create = async (params, credentials, goal) => {
     try {
-        let response = await fetch('/api/goal/', {
+        let response = await fetch('/api/goal/'+params.userId, {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Accept': 'application/json',
+                'Content-Type': 'application/json', 
+                'Authorization': 'Bearer' + credentials.t
             },
             body: JSON.stringify(goal)
         })
-        return await response.json()
+        return response.json()
     } catch (err) {
         console.log(err)
     }
