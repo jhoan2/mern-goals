@@ -64,12 +64,14 @@ const remove = async (params, credentials) => {
     }
 }
 
-const dropToDo = async (params, id) => {
+const dropToDo = async (params, credentials, id) => {
     try {
         let response = await fetch('/api/goal/'+params.goalId+'/undo', {
             method: 'PUT',
             headers: {
-                "Content-Type": "application/json"
+              'Accept': 'application/json',
+              "Content-Type": "application/json",
+              'Authorization': 'Bearer ' + credentials.t
             },
             body: JSON.stringify(id)
         })

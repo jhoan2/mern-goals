@@ -16,7 +16,7 @@ router.route('/api/goal/:goalId/todo')
     .put(authCtrl.requireSignin, goalCtrl.addToDo)
 
 router.route('/api/goal/:goalId/undo')
-    .put(goalCtrl.dropToDo)
+    .put(authCtrl.requireSignin, goalCtrl.dropToDo)
 
 router.param('userId', userCtrl.userByID)
 router.param('goalId', goalCtrl.goalByID)

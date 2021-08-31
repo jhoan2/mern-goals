@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import auth from './../auth/auth-helper'
+import React from 'react'
 import { 
-    Box, 
-    Typography,
     Grid, 
-    Button, 
     ListItem, 
     List, 
     ListItemSecondaryAction, 
@@ -14,12 +10,15 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import {dropToDo} from './api-goal'
+import auth from '../auth/auth-helper';
 
 export default function Goal(props) {
     const { goal } = props
     const toDos = goal.props.toDo
+    const jwt = auth.isAuthenticated();
+
     const deleteToDo = (toDoId) => {
-        dropToDo({goalId: props.goal.props._id}, toDoId).then((data) => {
+        dropToDo({goalId: props.goal.props._id}, {t: jwt.token}, toDoId).then((data) => {
             if (data && data.error) {
                 console.log('Could not delete To Do')
             }
