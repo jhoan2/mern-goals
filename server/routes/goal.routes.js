@@ -6,8 +6,8 @@ import authCtrl from '../controllers/auth.controller'
 const router = express.Router()
 
 router.route('/api/goal/:userId')
-    .get(goalCtrl.getGoals)
-    .post(goalCtrl.create)
+    .get(authCtrl.requireSignin, authCtrl.hasAuthorization, goalCtrl.getGoals)
+    .post(authCtrl.requireSignin, authCtrl.hasAuthorization, goalCtrl.create)
 
 router.route('/api/goal/:goalId')
     .delete(goalCtrl.remove)

@@ -42,7 +42,7 @@ export default function AddGoal() {
             }
         })
         handleClose()
-        // location.reload()
+        location.reload()
     }
     return (
         <div>
