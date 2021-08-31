@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { addToDo } from './api-goal';
+import auth from '../auth/auth-helper';
 
 export default function AddGoal(props) {
     const [open, setOpen] = useState(false)
@@ -32,7 +33,8 @@ export default function AddGoal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        addToDo({goalId: props.goal.props._id}, toDo).then((data) => {
+        const jwt = auth.isAuthenticated()
+        addToDo({goalId: props.goal.props._id}, {t: jwt.token}, toDo).then((data) => {
             if (data && data.error) {
                 setValues({...values, text: ' '})
             }

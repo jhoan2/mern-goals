@@ -47,12 +47,14 @@ const remove = async (params, credentials) => {
     }
   }
 
-  const addToDo = async (params,toDo) => {
+  const addToDo = async (params, credentials, toDo) => {
     try {
         let response = await fetch('/api/goal/'+params.goalId+'/todo', {
             method: 'PUT',
             headers: {
-                "Content-Type": "application/json"
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + credentials.t
             },
             body: JSON.stringify(toDo)
         })
