@@ -4,11 +4,13 @@ import {
 } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { remove } from './api-goal';
+import auth from '../auth/auth-helper'
 
 export default function DeleteGoal({goal}) {
  
     const handleClick = () => {
-        remove({goalId: goal.props._id}).then((data) => {
+        const jwt = auth.isAuthenticated();
+        remove({goalId: goal.props._id}, {t: jwt.token}).then((data) => {
             if (data.error) {
                 console.log(data.error)
             }

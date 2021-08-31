@@ -10,7 +10,7 @@ router.route('/api/goal/:userId')
     .post(authCtrl.requireSignin, authCtrl.hasAuthorization, goalCtrl.create)
 
 router.route('/api/goal/:goalId')
-    .delete(goalCtrl.remove)
+    .delete(authCtrl.requireSignin, goalCtrl.remove)
 
 router.route('/api/goal/:goalId/todo')
     .put(goalCtrl.addToDo)

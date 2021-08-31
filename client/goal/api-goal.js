@@ -32,12 +32,13 @@ const create = async (params, credentials, goal) => {
     }
 }
 
-const remove = async (params) => {
+const remove = async (params, credentials) => {
     try {
       let response = await fetch('/api/goal/' + params.goalId, {
         method: 'DELETE',
         headers: {
-          'Accept': 'application/json',
+          'Accept': 'application/json', 
+          'Authorization': 'Bearer ' + credentials.t
         }
       })
       return await response.json()
