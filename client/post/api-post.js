@@ -83,7 +83,7 @@ const create = async (params, credentials, post) => {
     }
   }
   
-  export default {
+  export {
       create,
       like,
       unlike, 
