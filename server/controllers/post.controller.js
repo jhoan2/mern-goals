@@ -85,11 +85,8 @@ const remove = async (req, res) => {
   }
 
 const listNewsFeed = async (req, res) => {
-    let following = req.profile.following
-    following.push(req.profile._id)
     try{
-        let posts = await Post.find({postedBy: { $in : req.profile.following } })
-                            .populate('comments.postedBy', '_id name')
+        let posts = await Post.find()
                             .populate('postedBy', '_id name')
                             .sort('-created')
                             .exec()
