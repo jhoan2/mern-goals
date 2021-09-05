@@ -75,7 +75,7 @@ const unlike = async (req, res) => {
 const remove = async (req, res) => {
     let post = req.post
     try{
-      let deletedPost = await post.remove()
+      let deletedPost = await post.deleteOne()
       res.json(deletedPost)
     }catch(err){
       return res.status(400).json({

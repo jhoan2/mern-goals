@@ -45,7 +45,7 @@ const getGoals = async (req, res) => {
 const remove = async (req, res) => {
     try {
         let goal = req.goal 
-        let deletedGoal = await goal.remove()
+        let deletedGoal = await goal.deleteOne()
         res.json(deletedGoal)
     } catch (err) {
         return res.status(400).json({
