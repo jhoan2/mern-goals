@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import {makeStyles} from '@material-ui/core/styles'
+import auth from '../auth/auth-helper'
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
@@ -46,8 +47,28 @@ const useStyles = makeStyles(theme => ({
 export default function Post({post}) {
     const classes = useStyles()
     const { created, likes, photo, text, postedBy, _id } = post
+    const jwt = auth.isAuthenticated()
+    const checkLike = (likes) => {
+        let match = likes.indexOf(jwt.user._id) !== -1
+        return match
+    }
+    const [values, setValues] = useState({
+        like: checkLike(likes),
+        likes: likes.length,
+    })
     const clickLike = () => {
-        console.log('like')
+        let callApi = values.like ? unlike : like
+        callApi({
+          userId: jwt.user._id
+        }, {
+          t: jwt.token
+        }, _id).then((data) => {
+          if (data.error) {
+            console.log(data.error)
+          } else {
+            setValues({...values, like: !values.like, likes: data.likes.length})
+          }
+        })
     }
     return (
         <Card className={classes.card}>
@@ -72,13 +93,13 @@ export default function Post({post}) {
             </div>)}
         </CardContent>
         <CardActions>
-          {/* { values.like
+          { values.like
             ? <IconButton onClick={clickLike} aria-label="Like" color="secondary">
                 <FavoriteIcon />
               </IconButton>
             : <IconButton onClick={clickLike} aria-label="Unlike" color="secondary">
                 <FavoriteBorderIcon />
-              </IconButton> } <span>{likes.length}</span> */}
+              </IconButton> } <span>{likes.length}</span>
         </CardActions>
       </Card>
     )
