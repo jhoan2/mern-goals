@@ -44,8 +44,8 @@ const Menu = withRouter(({history}) => (
               <DynamicFeedIcon />
             </IconButton>
           </Link>
-          <Link to="/">
-            <IconButton aria-label="Calendar" style={isActive(history, "/")}>
+          <Link to="/heatmap">
+            <IconButton aria-label="Heat Map" style={isActive(history, "/heatmap")}>
               <CalendarTodayIcon />
             </IconButton>
           </Link></span>)

@@ -10,6 +10,7 @@ import Menu from './core/Menu'
 import GoalTabs from './goal/GoalTabs'
 import NotFound from './core/NotFound'
 import PostFeed from './post/PostFeed'
+import HeatMap from './heatmap/HeatMap'
 
 const MainRouter = () => {
     return (<div>
@@ -20,6 +21,7 @@ const MainRouter = () => {
         <Route path="/signup" component={Signup}/>
         <Route path="/user/:userId" component={Profile}/>
         <Route path='/postfeed' component={PostFeed} />
+        <PrivateRoute path="/heatmap" component={HeatMap}/>
         <PrivateRoute path="/" component={GoalTabs}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path='*' component={NotFound} />
