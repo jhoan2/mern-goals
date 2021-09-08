@@ -23,7 +23,8 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  goals: [{type: mongoose.Schema.ObjectId, ref: 'Goal'}]
+  goals: [{type: mongoose.Schema.ObjectId, ref: 'Goal'}],
+  data: {type: mongoose.Schema.ObjectId, ref: 'HeatMap'}
 })
 
 UserSchema

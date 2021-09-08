@@ -10,6 +10,8 @@ import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import postRoutes from './routes/post.routes'
 import goalRoutes from './routes/goal.routes'
+import heatmapRoutes from './routes/heatmap.routes'
+
 // modules for server side rendering
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -46,6 +48,7 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', postRoutes)
 app.use('/', goalRoutes)
+app.use('/', heatmapRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()
