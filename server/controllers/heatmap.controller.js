@@ -30,23 +30,25 @@ const getHeatMapData = async (req, res) => {
 }
 
 const addDate = async (req, res) => {
-  const id = '60e88ceaa331a63d2c9523fc'
   const today = moment().startOf('day')
   try {
-    const query = { user: id, "data.date": {
-      $gte: today.toDate(),
-      $lte: moment(today).endOf('day').toDate()}
+    const query = { 
+      user: req.profile._id, 
+      "data.date": {
+        $gte: today.toDate(),
+        $lte: moment(today).endOf('day').toDate()
+      }
     }
     const updateDocument = {
       $inc: { "data.$.count": 1 }
     };
     let data = await HeatMap.find({$and: [
-      {user: id}, {"data": {$gte: today.toDate()}}
+      {user: req.profile._id}, {"data": {$lte: moment(today).endOf('day').toDate()}}
     ]})
     if (data.length === 0) {
-      await HeatMap.updateOne({user: id}, {"$push": {"data": {'count': 0}}})
+      await HeatMap.updateOne({user: req.profile._id}, {"$push": {"data": {'count': 0}}})
     } else {
-      data = await HeatMap.updateOne(query, updateDocument)
+      await HeatMap.updateOne(query, updateDocument)
     }
     res.json(data)
   } catch (err) {
