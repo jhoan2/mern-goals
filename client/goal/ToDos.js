@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import {dropToDo} from './api-goal'
 import auth from '../auth/auth-helper';
+import { addDate } from '../heatmap/api-heatmap';
 
 export default function Goal(props) {
     const { goal } = props
@@ -30,7 +31,7 @@ export default function Goal(props) {
                 {toDos.map((data) => (
                   <Grid item key={data._id}>
                     <ListItem>
-                    <Checkbox />
+                    <Checkbox onChange={() => addDate({userId: jwt.user._id}, {t: jwt.token})}/>
                       <ListItemText primary={data.text} />
                       <ListItemSecondaryAction>
                         <IconButton edge="end" aria-label="delete" onClick={() => deleteToDo({toDoId: data._id})}>

@@ -8,6 +8,7 @@ const router = express.Router()
 router.route('/api/heatmap/:userId')
     .post(heatmapCtrl.create)
     .get(heatmapCtrl.getHeatMapData)
+    .put(heatmapCtrl.addDate)
 
 router.param('userId', userCtrl.userByID)
 

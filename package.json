@@ -47,6 +47,7 @@
     "helmet": "3.22.0",
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.15",
+    "moment": "^2.29.1",
     "mongoose": "5.9.7",
     "prop-types": "^15.7.2",
     "react": "16.13.1",

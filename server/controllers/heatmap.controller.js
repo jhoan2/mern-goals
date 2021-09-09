@@ -1,5 +1,6 @@
 import HeatMap from '../models/heatmap.model'
 import errorHandler from './../helpers/dbErrorHandler'
+import moment from 'moment'
 
 const create = async (req, res) => {
     const data = new HeatMap({data: {count: 0}})
@@ -28,7 +29,35 @@ const getHeatMapData = async (req, res) => {
     }
 }
 
+const addDate = async (req, res) => {
+  const id = '60e88ceaa331a63d2c9523fc'
+  const today = moment().startOf('day')
+  try {
+    const query = { user: id, "data.date": {
+      $gte: today.toDate(),
+      $lte: moment(today).endOf('day').toDate()}
+    }
+    const updateDocument = {
+      $inc: { "data.$.count": 1 }
+    };
+    let data = await HeatMap.find({$and: [
+      {user: id}, {"data": {$gte: today.toDate()}}
+    ]})
+    if (data.length === 0) {
+      await HeatMap.updateOne({user: id}, {"$push": {"data": {'count': 0}}})
+    } else {
+      data = await HeatMap.updateOne(query, updateDocument)
+    }
+    res.json(data)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
 export default {
     create,
-    getHeatMapData,    
+    getHeatMapData,
+    addDate  
 }
