@@ -43,8 +43,9 @@ const addDate = async (req, res) => {
       $inc: { "data.$.count": 1 }
     };
     let data = await HeatMap.find({$and: [
-      {user: req.profile._id}, {"data": {$lte: moment(today).endOf('day').toDate()}}
+      {user: req.profile._id}, {"data.date": {$gte: today.toDate(), $lte: moment(today).endOf('day').toDate()}}
     ]})
+
     if (data.length === 0) {
       await HeatMap.updateOne({user: req.profile._id}, {"$push": {"data": {'count': 0}}})
     } else {
