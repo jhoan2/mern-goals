@@ -4,8 +4,10 @@ import './styles.css'
 import moment from 'moment'
 
 export default function Calendar({values}) {
-    const startDate = new Date()
-    const endDate = moment(startDate)
+    const openDate = new Date()
+    const startDate = moment(openDate)
+    startDate.subtract(9, 'days')
+    const endDate = moment(openDate)
     endDate.add(4, 'months')
     return (
         <div>
