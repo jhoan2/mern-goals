@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { create, getHeatMapData } from './api-heatmap'
 import auth from '../auth/auth-helper'
+import Calendar from './Calendar'
+
 
 export default function HeatMap() {
     const [values, setValues] = useState()
@@ -14,7 +16,7 @@ export default function HeatMap() {
             } else if (data === undefined || data.length === 0) {
                 create({userId: jwt.user._id})
             }else {
-              setValues(data)
+              setValues(data[0].data)
             }
           })
       
@@ -22,10 +24,9 @@ export default function HeatMap() {
             abortController.abort()
           }
         }, []) 
-        console.log(values)
     return (
         <div>
-            <p>hello</p>
+            {values ? <Calendar values={values} /> : 'Loading...'}
         </div>
     )
 }
