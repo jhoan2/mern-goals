@@ -55,7 +55,7 @@ export default function NewPost() {
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <AddBoxIcon  />
+                <AddBoxIcon  /> Post Your Goals
             </IconButton>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
