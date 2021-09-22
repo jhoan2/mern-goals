@@ -45,7 +45,7 @@ export default function AddGoal(props) {
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <AddBoxIcon  />
+                <AddBoxIcon  /> Add To Do
             </IconButton>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

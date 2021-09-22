@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {   
     IconButton, 
 } from '@material-ui/core'
@@ -21,7 +21,7 @@ export default function DeleteGoal({goal}) {
     return (
         <div>
             <IconButton onClick={() => handleClick()}>
-                <HighlightOffIcon  />
+                <HighlightOffIcon  /> Delete Goal
             </IconButton>
         </div>
     )

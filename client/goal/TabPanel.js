@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ToDos from './ToDos'
 import AddGoal from './AddGoal'
 import DeleteGoal from './DeleteGoal';
@@ -22,17 +22,17 @@ export default function TabPanel(props) {
             </div>
             <div>
                 {value === index && (
+                    <AddToDo goal={props} />
+                )}
+            </div>
+            <div>
+                {value === index && (
                     <AddGoal />
                 )}
             </div>
             <div>
                 {value === index && (
                     <DeleteGoal goal={props} />
-                )}
-            </div>
-            <div>
-                {value === index && (
-                    <AddToDo goal={props} />
                 )}
             </div>
         </div>
