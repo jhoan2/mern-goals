@@ -1,6 +1,6 @@
 import React from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
-import "./styles.css";
+// import "./styles.css";
 import moment from "moment";
 
 export default function Calendar({ values }) {
